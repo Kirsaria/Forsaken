@@ -4,19 +4,20 @@
 #include <vector>
 
 using namespace sf;
+using namespace std;
 
-void InitText(Text& mtext, float xpos, float ypos, String str, int size_font,
+inline void InitText(Text& mtext, float xpos, float ypos, String str, int size_font,
     Color menu_text_color = Color::White, int bord = 0, Color border_color = Color::Black);
 
-void menu(RenderWindow& window, sf::Music& music, bool& isSoundOn) {
-    std::vector<Texture> foxTextures(4);
+inline void menu(RenderWindow& window,  Music& music, bool& isSoundOn) {
+     vector<Texture> foxTextures(4);
     for (int i = 0; i < 4; ++i) {
-        foxTextures[i].loadFromFile("Image/foxgif_" + std::to_string(i + 1) + ".png");
+        foxTextures[i].loadFromFile("Image/foxgif_" +  to_string(i + 1) + ".png");
     }
 
-    std::string buttonNames[3] = { "play", "tutor", "exit" };
-    std::vector<Texture> menuTextures(3);
-    std::vector<Texture> menuLights(3);
+     string buttonNames[3] = { "play", "tutor", "exit" };
+     vector<Texture> menuTextures(3);
+     vector<Texture> menuLights(3);
     for (int i = 0; i < 3; ++i) {
         menuTextures[i].loadFromFile("Image/" + buttonNames[i] + "_1.png");
         menuLights[i].loadFromFile("Image/" + buttonNames[i] + "_2.png");
@@ -28,7 +29,7 @@ void menu(RenderWindow& window, sf::Music& music, bool& isSoundOn) {
     tutorTexture.loadFromFile("Image/tutor.png");
     newTexture.loadFromFile("Image/tutor_W.png");
 
-    std::vector<Sprite> menuButtons(3);
+     vector<Sprite> menuButtons(3);
     for (int i = 0; i < 3; ++i) {
         menuButtons[i].setTexture(menuTextures[i]);
         menuButtons[i].setPosition(100, 200 + i * 300); 
@@ -77,11 +78,11 @@ void menu(RenderWindow& window, sf::Music& music, bool& isSoundOn) {
 
             if (event.type == Event::MouseButtonPressed && event.mouseButton.button == Mouse::Left) {
                 if (menuButtons[0].getGlobalBounds().contains(mousePosition.x, mousePosition.y)) {
-                    std::cout << "Menu 1 selected" << std::endl;
+                     cout << "Menu 1 selected" <<  endl;
                     isMenu = false;
                 }
                 else if (menuButtons[1].getGlobalBounds().contains(mousePosition.x, mousePosition.y)) {
-                    std::cout << "Menu 2 selected" << std::endl;
+                     cout << "Menu 2 selected" <<  endl;
 
                     bool isTutor = true;
                     while (isTutor && window.isOpen()) {
@@ -101,7 +102,7 @@ void menu(RenderWindow& window, sf::Music& music, bool& isSoundOn) {
                     }
                 }
                 else if (menuButtons[2].getGlobalBounds().contains(mousePosition.x, mousePosition.y)) {
-                    std::cout << "Menu 3 selected" << std::endl;
+                     cout << "Menu 3 selected" <<  endl;
                     window.close();
                     isMenu = false;
                 }
@@ -110,12 +111,12 @@ void menu(RenderWindow& window, sf::Music& music, bool& isSoundOn) {
 
                     if (isSoundOn) {
                         soundButton.setTexture(soundOnTex);
-                        if (music.getStatus() != sf::Music::Playing)
+                        if (music.getStatus() !=  Music::Playing)
                             music.play();
                     }
                     else {
                         soundButton.setTexture(soundOffTex);
-                        if (music.getStatus() != sf::Music::Paused)
+                        if (music.getStatus() !=  Music::Paused)
                             music.pause();
                     }
                 }
@@ -143,7 +144,7 @@ void menu(RenderWindow& window, sf::Music& music, bool& isSoundOn) {
     }
 }
 
-void InitText(Text& mtext, float xpos, float ypos, String str, int size_font,
+inline void InitText(Text& mtext, float xpos, float ypos, String str, int size_font,
     Color menu_text_color, int bord, Color border_color)
 {
     mtext.setCharacterSize(size_font);

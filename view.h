@@ -1,8 +1,9 @@
 #include <SFML/Graphics.hpp>
 using namespace sf;
-sf::View view;
+using namespace std;
+extern  View view;
 
-void getplayercoordinateforview(float x, float y)
+inline void getplayercoordinateforview(float x, float y)
 { 
 	float tempX = x; float tempY = y;
 	if (x < 500) tempX = 500;

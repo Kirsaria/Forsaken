@@ -127,14 +127,31 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Animals.cpp" />
+    <ClCompile Include="Button.cpp" />
+    <ClCompile Include="Game.cpp" />
+    <ClCompile Include="Keeper.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="NPC.cpp" />
+    <ClCompile Include="Plants.cpp" />
+    <ClCompile Include="Player.cpp" />
+    <ClCompile Include="Task.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Animals.h" />
+    <ClInclude Include="Button.h" />
+    <ClInclude Include="Game.h" />
     <ClInclude Include="GameMenu.h" />
+    <ClInclude Include="GameObject.h" />
+    <ClInclude Include="Keeper.h" />
     <ClInclude Include="map.h" />
+    <ClInclude Include="NPC.h" />
+    <ClInclude Include="Plants.h" />
+    <ClInclude Include="Player.h" />
+    <ClInclude Include="Task.h" />
     <ClInclude Include="view.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
