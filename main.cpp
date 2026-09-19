@@ -15,9 +15,17 @@
 using namespace sf;
 using namespace std;
 
+// ==================== ВСПОМОГАТЕЛЬНЫЕ СТРУКТУРЫ И КЛАССЫ ====================
+
 const int numTrashSprites = 5;
-bool tasksVisible = true;
-bool answerSelected = false;
+
+struct GameUI {
+    Texture counterTex, exitTex, exitLightTex, holeTex, taskTex, messageTex;
+    Sprite counterSprite, exitSprite, exitLightSprite, holeSprite, taskSprite, messageSprite;
+    Text trashCounter;
+    vector<Texture> trashTextures;
+    vector<Sprite> trashSprites;
+};
 
 class Player;
 
@@ -26,7 +34,7 @@ public:
     virtual ~IGameObject() = default;
     virtual void update(float time) {}
     virtual void draw(RenderWindow& window) = 0;
-    virtual void checkCollision(class Player& player) = 0;
+    virtual void checkCollision(Player& player) = 0;
     virtual void interact(Player& player) {}
     virtual string getName() const = 0;
     virtual bool isNear(const Player& player) const = 0;
@@ -54,7 +62,7 @@ public:
         taskText.setPosition(currentView.getCenter().x + position.x, currentView.getCenter().y + position.y);
     }
 
-    void draw(RenderWindow& window) {
+    void draw(RenderWindow& window, bool tasksVisible) {
         if (!isRemoved && tasksVisible) {
             window.draw(taskText);
         }
@@ -65,8 +73,6 @@ public:
         taskText.setFillColor(color);
     }
 };
-
-map<string, unique_ptr<Task>> tasks;
 
 class Player {
 public:
@@ -248,7 +254,6 @@ public:
 
     void updateDialoguePosition(RenderWindow& window) {
         View currentView = window.getView();
-
         Vector2f animalPos(currentView.getCenter().x - currentView.getSize().x / 2,
             currentView.getCenter().y + currentView.getSize().y / 2 - dialogueSprite.getGlobalBounds().height);
         dialogueSprite.setPosition(animalPos);
@@ -302,9 +307,6 @@ public:
 
     void interact(Player& player) override {
         toggleDialogue();
-        if (tasks.find(name) != tasks.end()) {
-            tasks[name]->setRed();
-        }
     }
 
     virtual void onAllTasksCompleted() {}
@@ -404,7 +406,7 @@ public:
         correctAnswerIndex = stoi(lines[randomIndex + 5]);
     }
 
-    void drawKeeperDialogue(RenderWindow& window, Event event, float offsetX = 0, float offsetY = 0) {
+    void drawKeeperDialogue(RenderWindow& window, Event event, bool& answerSelectedRef, float offsetX = 0, float offsetY = 0) {
         drawDialogue(window, offsetX, offsetY);
         if (!dialogueOpened) return;
 
@@ -432,7 +434,7 @@ public:
             else if (option4Button.Pressed(window, event)) answerPressed = (correctAnswerIndex == 4);
 
             if (answerPressed) {
-                answerSelected = true;
+                answerSelectedRef = true;
                 if (currentQuestionIndex < totalQuestions - 1) {
                     currentQuestionIndex++;
                     loadCurrentQuestionOptions();
@@ -487,9 +489,6 @@ public:
 
     void interact(Player& player) override {
         informOpened = !informOpened;
-        if (tasks.find(name) != tasks.end()) {
-            tasks[name]->setRed();
-        }
     }
 
     void checkCollision(Player& player) override {
@@ -508,126 +507,123 @@ public:
     }
 };
 
-int main() {
-    system("chcp 1251");
-    RenderWindow window(VideoMode::getDesktopMode(), "Forsaken", Style::Fullscreen);
-    Image icon;
-    icon.loadFromFile("Image/icon.png");
-    window.setIcon(icon.getSize().x, icon.getSize().y, icon.getPixelsPtr());
-    window.setFramerateLimit(60);
+// ==================== ГЛАВНЫЙ КЛАСС ИГРЫ (GAME) ====================
 
-    bool isSoundOn = true;
+class Game {
+private:
+    RenderWindow window;
     Music music;
-    music.openFromFile("Sound/forest.wav");
-    music.play();
-    menu(window, music, isSoundOn);
-    view.reset(FloatRect(0, 0, 640, 480));
-
+    bool isSoundOn;
     Font font;
-    font.loadFromFile("font//CyrilicOld.ttf");
-
     Map gameMap;
-
-    Player fox("fox.png", 1400, 100, 100, 200);
-
-    auto keeper = make_shared<Keeper>("keeper.png", 1400, 100, 122, 102, "keeper", "deer dialogue.png", window, "keeper.txt");
-
+    Player fox;
+    shared_ptr<Keeper> keeper;
     vector<shared_ptr<IGameObject>> gameObjects;
-    gameObjects.push_back(keeper);
-    gameObjects.push_back(make_shared<Animals>("antilope.png", 180, 155, 96, 116, "antilope", "antelope dialogue.png", "antilope.txt", 230.f));
-    gameObjects.push_back(make_shared<Animals>("black cat.png", 2350, 800, 41, 52, "cat", "black cat dialogue.png", "cat.txt", 210.f));
-    gameObjects.push_back(make_shared<Animals>("hedgehog.png", 1680, 870, 38, 28, "hedgehog", "hedgehog dialogue.png", "hedgehog.txt", 210.f));
-    gameObjects.push_back(make_shared<Animals>("red wolf.png", 680, 850, 84, 96, "wolf", "red wolf dialogue.png", "wolf.txt", 190.f));
-
-    struct PlantData {
-        string name;
-        string file;
-        float x, y, w, h;
-        string infoFile;
-    };
-
-    vector<PlantData> plantsData = {
-        {"iva", "iva.png", 120, 100, 111, 121, "Iva_.png"},
-        {"lilia", "lilia.png", 2500, 250, 22, 26, "Lilia_.png"},
-        {"lotus", "lotus.png", 1330, 660, 64, 59, "Lotus_.png"},
-        {"cyclamen", "cyclamenn.png", 856, 434, 28, 31, "Cyclamen_.png"},
-        {"slipper", "lady's slipper.png", 2357, 567, 25, 26, "Slipper.png"},
-        {"risantella", "risantella gardner.png", 200, 900, 25, 26, "Risantella.png"}
-    };
-
-    for (const auto& p : plantsData) {
-        gameObjects.push_back(make_shared<Plants>(p.file, p.x, p.y, p.w, p.h, p.name, p.infoFile));
-    }
-
-    vector<pair<string, string>> taskInitList = {
-        {"keeper", "Взаимодействуйте с хранителем."}, {"cat", "Взаимодействуйте с кошкой."},
-        {"wolf", "Взаимодействуйте с волком."}, {"hedgehog", "Взаимодействуйте с ежом."},
-        {"antilope", "Взаимодействуйте с антилопой."}, {"iva", "Взаимодействуйте с ивой."},
-        {"lilia", "Взаимодействуйте с лилией."}, {"lotus", "Взаимодействуйте с лотусом."},
-        {"cyclamen", "Взаимодействуйте с растением цикламен."}, {"slipper", "Взаимодействуйте с венериным башмачком."},
-        {"risantella", "Взаимодействуйте с рисантелой."}
-    };
-    for (const auto& item : taskInitList) {
-        tasks[item.first] = make_unique<Task>(item.second, font);
-    }
-
+    GameUI ui;
     Clock clock;
-    float CurrentFrame = 0;
+    float currentFrame;
 
-    Text trashCounter("", font, 15);
-    trashCounter.setFillColor(Color::White);
-    Texture CounterTexture, ExitTexture, ExitLightTexture, holeTexture, TaskTexture, messageTexture;
-    CounterTexture.loadFromFile("Image/counter.png");
-    ExitTexture.loadFromFile("Image/exit_map.png");
-    ExitLightTexture.loadFromFile("Image/exit_map1.png");
-    holeTexture.loadFromFile("Image/trash hole.png");
-    TaskTexture.loadFromFile("Image/task.png");
-    messageTexture.loadFromFile("Image/message.png");
+    bool tasksVisible;
+    bool answerSelected;
+    vector<pair<string, string>> taskInitList;
+    map<string, unique_ptr<Task>> tasks;
 
-    Sprite CounterSprite(CounterTexture), ExitSprite(ExitTexture), ExitLightSprite(ExitLightTexture), holeSprite(holeTexture), TaskSprite(TaskTexture), message(messageTexture);
-    holeSprite.setPosition(2420, 870);
+    void initGameObjects() {
+        gameObjects.push_back(keeper);
+        gameObjects.push_back(make_shared<Animals>("antilope.png", 180, 155, 96, 116, "antilope", "antelope dialogue.png", "antilope.txt", 230.f));
+        gameObjects.push_back(make_shared<Animals>("black cat.png", 2350, 800, 41, 52, "cat", "black cat dialogue.png", "cat.txt", 210.f));
+        gameObjects.push_back(make_shared<Animals>("hedgehog.png", 1680, 870, 38, 28, "hedgehog", "hedgehog dialogue.png", "hedgehog.txt", 210.f));
+        gameObjects.push_back(make_shared<Animals>("red wolf.png", 680, 850, 84, 96, "wolf", "red wolf dialogue.png", "wolf.txt", 190.f));
 
-    vector<Texture> trashTextures(3);
-    for (int i = 0; i < 3; ++i) {
-        trashTextures[i].loadFromFile("Image/trash_" + to_string(i + 1) + ".png");
+        struct PlantData {
+            string name;
+            string file;
+            float x, y, w, h;
+            string infoFile;
+        };
+
+        vector<PlantData> plantsData = {
+            {"iva", "iva.png", 120, 100, 111, 121, "Iva_.png"},
+            {"lilia", "lilia.png", 2500, 250, 22, 26, "Lilia_.png"},
+            {"lotus", "lotus.png", 1330, 660, 64, 59, "Lotus_.png"},
+            {"cyclamen", "cyclamenn.png", 856, 434, 28, 31, "Cyclamen_.png"},
+            {"slipper", "lady's slipper.png", 2357, 567, 25, 26, "Slipper.png"},
+            {"risantella", "risantella gardner.png", 200, 900, 25, 26, "Risantella.png"}
+        };
+
+        for (const auto& p : plantsData) {
+            gameObjects.push_back(make_shared<Plants>(p.file, p.x, p.y, p.w, p.h, p.name, p.infoFile));
+        }
     }
 
-    vector<Sprite> trashSprites;
-    for (int i = 0; i < numTrashSprites; ++i) {
-        int x = rand() % (gameMap.getWidth() - 2) + 1;
-        int y = rand() % (gameMap.getHeight() - 2) + 2;
-        Sprite ts(trashTextures[rand() % trashTextures.size()]);
-        ts.setPosition(static_cast<float>(x * 70), static_cast<float>(y * 48));
-        trashSprites.push_back(ts);
+    void initTasks() {
+        for (const auto& item : taskInitList) {
+            tasks[item.first] = make_unique<Task>(item.second, font);
+        }
     }
 
-    while (window.isOpen()) {
-        float time = clock.getElapsedTime().asMicroseconds() / 800.0f;
-        clock.restart();
+    void initGameUI() {
+        ui.counterTex.loadFromFile("Image/counter.png");
+        ui.exitTex.loadFromFile("Image/exit_map.png");
+        ui.exitLightTex.loadFromFile("Image/exit_map1.png");
+        ui.holeTex.loadFromFile("Image/trash hole.png");
+        ui.taskTex.loadFromFile("Image/task.png");
+        ui.messageTex.loadFromFile("Image/message.png");
 
-        Event event;
-        while (window.pollEvent(event)) {
-            if (event.type == Event::Closed) window.close();
+        ui.counterSprite.setTexture(ui.counterTex);
+        ui.exitSprite.setTexture(ui.exitTex);
+        ui.exitLightSprite.setTexture(ui.exitLightTex);
+        ui.holeSprite.setTexture(ui.holeTex);
+        ui.taskSprite.setTexture(ui.taskTex);
+        ui.messageSprite.setTexture(ui.messageTex);
 
-            if (event.type == Event::KeyPressed) {
-                if (event.key.code == Keyboard::R) {
-                    tasksVisible = !tasksVisible;
-                }
+        ui.holeSprite.setPosition(2420, 870);
 
-                if (event.key.code == Keyboard::E) {
-                    for (auto& obj : gameObjects) {
-                        if (obj->isNear(fox)) {
-                            obj->interact(fox);
-                            break;
-                        }
-                    }
-                }
-            }
+        ui.trashTextures.resize(3);
+        for (int i = 0; i < 3; ++i) {
+            ui.trashTextures[i].loadFromFile("Image/trash_" + to_string(i + 1) + ".png");
         }
 
+        for (int i = 0; i < numTrashSprites; ++i) {
+            int rx = rand() % (gameMap.getWidth() - 2) + 1;
+            int ry = rand() % (gameMap.getHeight() - 2) + 2;
+            Sprite ts(ui.trashTextures[rand() % ui.trashTextures.size()]);
+            ts.setPosition(static_cast<float>(rx * 70), static_cast<float>(ry * 48));
+            ui.trashSprites.push_back(ts);
+        }
+
+        ui.trashCounter.setFont(font);
+        ui.trashCounter.setCharacterSize(15);
+        ui.trashCounter.setFillColor(Color::White);
+    }
+
+    void handlePlayerInput(float time) {
+        if (Keyboard::isKeyPressed(Keyboard::A)) {
+            fox.dir = 1; fox.speed = 0.5f;
+            currentFrame += 0.005f * time; if (currentFrame > 3) currentFrame -= 3;
+            fox.sprite.setTextureRect(IntRect(138 * int(currentFrame), 492, 138, 96));
+        }
+        else if (Keyboard::isKeyPressed(Keyboard::D)) {
+            fox.dir = 0; fox.speed = 0.5f;
+            currentFrame += 0.005f * time; if (currentFrame > 3) currentFrame -= 3;
+            fox.sprite.setTextureRect(IntRect(128 * int(currentFrame), 192, 128, 96));
+        }
+        else if (Keyboard::isKeyPressed(Keyboard::W)) {
+            fox.dir = 3; fox.speed = 0.5f;
+            currentFrame += 0.005f * time; if (currentFrame > 3) currentFrame -= 3;
+            fox.sprite.setTextureRect(IntRect(135 * int(currentFrame), 332, 135, 96));
+        }
+        else if (Keyboard::isKeyPressed(Keyboard::S)) {
+            fox.dir = 2; fox.speed = 0.5f;
+            currentFrame += 0.005f * time; if (currentFrame > 3) currentFrame -= 3;
+            fox.sprite.setTextureRect(IntRect(143 * int(currentFrame), 61, 143, 96));
+        }
+    }
+
+    void handleGlobalKeysAndExit() {
         Vector2f worldPos = window.mapPixelToCoords(Mouse::getPosition(window));
-        if (ExitSprite.getGlobalBounds().contains(worldPos) && !keeper->dialogueOpened) {
-            ExitSprite.setTexture(ExitLightTexture);
+        if (ui.exitSprite.getGlobalBounds().contains(worldPos) && !keeper->dialogueOpened) {
+            ui.exitSprite.setTexture(ui.exitLightTex);
             if (Mouse::isButtonPressed(Mouse::Left)) {
                 view.reset(FloatRect(0, 0, static_cast<float>(window.getSize().x), static_cast<float>(window.getSize().y)));
                 window.setView(view);
@@ -635,106 +631,201 @@ int main() {
             }
         }
         else {
-            ExitSprite.setTexture(ExitTexture);
+            ui.exitSprite.setTexture(ui.exitTex);
         }
 
         if (Keyboard::isKeyPressed(Keyboard::Space)) {
-            if (fox.messageDisplayed) { fox.messageDisplayed = false; keeper->onAllTrashCollect(); }
-            if (keeper->endTestShown) keeper->endTestShown = false;
-        }
-
-        if (Keyboard::isKeyPressed(Keyboard::A)) { fox.dir = 1; fox.speed = 0.5f; CurrentFrame += 0.005f * time; if (CurrentFrame > 3) CurrentFrame -= 3; fox.sprite.setTextureRect(IntRect(138 * int(CurrentFrame), 492, 138, 96)); }
-        if (Keyboard::isKeyPressed(Keyboard::D)) { fox.dir = 0; fox.speed = 0.5f; CurrentFrame += 0.005f * time; if (CurrentFrame > 3) CurrentFrame -= 3; fox.sprite.setTextureRect(IntRect(128 * int(CurrentFrame), 192, 128, 96)); }
-        if (Keyboard::isKeyPressed(Keyboard::W)) { fox.dir = 3; fox.speed = 0.5f; CurrentFrame += 0.005f * time; if (CurrentFrame > 3) CurrentFrame -= 3; fox.sprite.setTextureRect(IntRect(135 * int(CurrentFrame), 332, 135, 96)); }
-        if (Keyboard::isKeyPressed(Keyboard::S)) { fox.dir = 2; fox.speed = 0.5f; CurrentFrame += 0.005f * time; if (CurrentFrame > 3) CurrentFrame -= 3; fox.sprite.setTextureRect(IntRect(143 * int(CurrentFrame), 61, 143, 96)); }
-
-        getplayercoordinateforview(fox.getplayercoordinateX(), fox.getplayercoordinateY());
-        fox.update(time, gameMap);
-        fox.interactWithTrash(trashSprites, holeSprite);
-
-        for (auto& obj : gameObjects) {
-            obj->checkCollision(fox);
-        }
-
-        view.setSize(static_cast<float>(window.getSize().x) / 2.f, static_cast<float>(window.getSize().y) / 2.f);
-        window.setView(view);
-        window.clear();
-
-        gameMap.draw(window);
-
-        for (auto& obj : gameObjects) {
-            obj->draw(window);
-        }
-
-        window.draw(holeSprite);
-        for (auto& trash : trashSprites) window.draw(trash);
-
-        window.draw(fox.sprite);
-        for (auto& obj : gameObjects) {
-            if (auto plant = dynamic_cast<Plants*>(obj.get())) {
-                plant->drawInformWindow(window);
+            if (fox.messageDisplayed) {
+                fox.messageDisplayed = false;
+                keeper->onAllTrashCollect();
+            }
+            if (keeper->endTestShown) {
+                keeper->endTestShown = false;
             }
         }
+    }
 
+    void updateHUD() {
         View currentView = window.getView();
-        CounterSprite.setPosition(currentView.getCenter().x + currentView.getSize().x / 2 - CounterSprite.getGlobalBounds().width, currentView.getCenter().y - currentView.getSize().y / 2);
-        trashCounter.setPosition(view.getCenter().x + 313, view.getCenter().y - 243);
-        ExitSprite.setPosition(currentView.getCenter().x - currentView.getSize().x / 2, currentView.getCenter().y + currentView.getSize().y / 2 - ExitSprite.getGlobalBounds().height);
-        TaskSprite.setPosition(currentView.getCenter().x - currentView.getSize().x / 2, currentView.getCenter().y - currentView.getSize().y / 2);
+        ui.counterSprite.setPosition(currentView.getCenter().x + currentView.getSize().x / 2 - ui.counterSprite.getGlobalBounds().width, currentView.getCenter().y - currentView.getSize().y / 2);
+        ui.trashCounter.setPosition(view.getCenter().x + 313, view.getCenter().y - 243);
+        ui.exitSprite.setPosition(currentView.getCenter().x - currentView.getSize().x / 2, currentView.getCenter().y + currentView.getSize().y / 2 - ui.exitSprite.getGlobalBounds().height);
+        ui.taskSprite.setPosition(currentView.getCenter().x - currentView.getSize().x / 2, currentView.getCenter().y - currentView.getSize().y / 2);
 
         stringstream ss;
         ss << "Собрано мусора: " << fox.collectedTrash << " / " << numTrashSprites;
-        trashCounter.setString(ss.str());
+        ui.trashCounter.setString(ss.str());
+    }
 
-        window.draw(CounterSprite);
-        window.draw(ExitSprite);
-        window.draw(trashCounter);
-        if (tasksVisible) window.draw(TaskSprite);
-
-        float startOffsetY = -250.0f, stepY = 20.0f;
-        int taskIndex = 0;
-        for (const auto& item : taskInitList) {
-            if (tasks.find(item.first) != tasks.end()) {
-                tasks[item.first]->updatePosition(window, Vector2f(-460, startOffsetY + (taskIndex * stepY)));
-                tasks[item.first]->draw(window);
-            }
-            taskIndex++;
-        }
-
-        if (fox.messageDisplayed) {
-            message.setPosition(currentView.getCenter().x - message.getGlobalBounds().width / 2, currentView.getCenter().y - message.getGlobalBounds().height / 2);
-            window.draw(message);
-        }
-
-        for (auto& obj : gameObjects) {
-            Animals* animal = dynamic_cast<Animals*>(obj.get());
-            if (animal && animal != keeper.get()) {
-                animal->updateDialogue();
-                animal->updateDialoguePosition(window);
-                animal->drawDialogue(window, 50, animal->dialogueOffsetY);
-            }
-        }
-
-        keeper->updateDialoguePosition(window);
-        keeper->drawKeeperDialogue(window, event, 50, 250);
-        keeper->updateDialogue();
-
+    void checkTasksCompletion() {
         bool allRed = true;
         for (auto const& pair : tasks) {
-            if (pair.second->color != Color::Red) { allRed = false; break; }
+            if (pair.second->color != Color::Red) {
+                allRed = false;
+                break;
+            }
         }
         if (allRed) {
-            for (auto const& pair : tasks) pair.second->remove();
+            for (auto const& pair : tasks) {
+                pair.second->remove();
+            }
             keeper->onAllTasksCompleted();
         }
-
-        if (keeper->endTestShown) {
-            window.setView(keeper->uiView);
-            window.draw(keeper->endTestSprite);
-            window.setView(currentView);
-        }
-
-        window.display();
     }
+
+public:
+    Game()
+        : window(VideoMode::getDesktopMode(), "Forsaken", Style::Fullscreen),
+        isSoundOn(true),
+        fox("fox.png", 1400, 100, 100, 200),
+        currentFrame(0),
+        tasksVisible(true),
+        answerSelected(false) {
+
+        system("chcp 1251");
+        Image icon;
+        icon.loadFromFile("Image/icon.png");
+        window.setIcon(icon.getSize().x, icon.getSize().y, icon.getPixelsPtr());
+        window.setFramerateLimit(60);
+
+        music.openFromFile("Sound/forest.wav");
+        music.play();
+        menu(window, music, isSoundOn);
+        view.reset(FloatRect(0, 0, 640, 480));
+
+        font.loadFromFile("font//CyrilicOld.ttf");
+
+        keeper = make_shared<Keeper>("keeper.png", 1400, 100, 122, 102, "keeper", "deer dialogue.png", window, "keeper.txt");
+
+        taskInitList = {
+            {"keeper", "Взаимодействуйте с хранителем."},
+            {"cat", "Взаимодействуйте с кошкой."},
+            {"wolf", "Взаимодействуйте с волком."},
+            {"hedgehog", "Взаимодействуйте с ежом."},
+            {"antilope", "Взаимодействуйте с антилопой."},
+            {"iva", "Взаимодействуйте с ивой."},
+            {"lilia", "Взаимодействуйте с лилией."},
+            {"lotus", "Взаимодействуйте с лотусом."},
+            {"cyclamen", "Взаимодействуйте с растением цикламен."},
+            {"slipper", "Взаимодействуйте с венериным башмачком."},
+            {"risantella", "Взаимодействуйте с рисантелой."}
+        };
+
+        initGameObjects();
+        initTasks();
+        initGameUI();
+    }
+
+    void run() {
+        while (window.isOpen()) {
+            float time = clock.getElapsedTime().asMicroseconds() / 800.0f;
+            clock.restart();
+
+            Event event;
+            while (window.pollEvent(event)) {
+                if (event.type == Event::Closed) window.close();
+
+                if (event.type == Event::KeyPressed) {
+                    if (event.key.code == Keyboard::R) {
+                        tasksVisible = !tasksVisible;
+                    }
+                    if (event.key.code == Keyboard::E) {
+                        for (auto& obj : gameObjects) {
+                            if (obj->isNear(fox)) {
+                                obj->interact(fox);
+                                if (tasks.find(obj->getName()) != tasks.end()) {
+                                    tasks[obj->getName()]->setRed();
+                                }
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+
+            handleGlobalKeysAndExit();
+            handlePlayerInput(time);
+
+            getplayercoordinateforview(fox.getplayercoordinateX(), fox.getplayercoordinateY());
+            fox.update(time, gameMap);
+            fox.interactWithTrash(ui.trashSprites, ui.holeSprite);
+
+            for (auto& obj : gameObjects) {
+                obj->checkCollision(fox);
+            }
+
+            view.setSize(static_cast<float>(window.getSize().x) / 2.f, static_cast<float>(window.getSize().y) / 2.f);
+            window.setView(view);
+            window.clear();
+
+            gameMap.draw(window);
+
+            for (auto& obj : gameObjects) {
+                obj->draw(window);
+            }
+
+            window.draw(ui.holeSprite);
+            for (auto& trash : ui.trashSprites) window.draw(trash);
+
+            window.draw(fox.sprite);
+            for (auto& obj : gameObjects) {
+                if (auto plant = dynamic_cast<Plants*>(obj.get())) {
+                    plant->drawInformWindow(window);
+                }
+            }
+
+            updateHUD();
+
+            window.draw(ui.counterSprite);
+            window.draw(ui.exitSprite);
+            window.draw(ui.trashCounter);
+            if (tasksVisible) window.draw(ui.taskSprite);
+
+            float startOffsetY = -250.0f, stepY = 20.0f;
+            int taskIndex = 0;
+            for (const auto& item : taskInitList) {
+                if (tasks.find(item.first) != tasks.end()) {
+                    tasks[item.first]->updatePosition(window, Vector2f(-460, startOffsetY + (taskIndex * stepY)));
+                    tasks[item.first]->draw(window, tasksVisible);
+                }
+                taskIndex++;
+            }
+
+            if (fox.messageDisplayed) {
+                ui.messageSprite.setPosition(window.getView().getCenter().x - ui.messageSprite.getGlobalBounds().width / 2, window.getView().getCenter().y - ui.messageSprite.getGlobalBounds().height / 2);
+                window.draw(ui.messageSprite);
+            }
+
+            for (auto& obj : gameObjects) {
+                Animals* animal = dynamic_cast<Animals*>(obj.get());
+                if (animal && animal != keeper.get()) {
+                    animal->updateDialogue();
+                    animal->updateDialoguePosition(window);
+                    animal->drawDialogue(window, 50, animal->dialogueOffsetY);
+                }
+            }
+
+            keeper->updateDialoguePosition(window);
+            keeper->drawKeeperDialogue(window, event, answerSelected, 50, 250);
+            keeper->updateDialogue();
+
+            checkTasksCompletion();
+
+            if (keeper->endTestShown) {
+                window.setView(keeper->uiView);
+                window.draw(keeper->endTestSprite);
+                window.setView(window.getView());
+            }
+
+            window.display();
+        }
+    }
+};
+
+// ==================== ТОЧКА ВХОДА ====================
+
+int main() {
+    Game game;
+    game.run();
     return 0;
 }

@@ -1,157 +1,157 @@
 ﻿  main.cpp
-D:\Programming\Forsaken - Copy\GameMenu.h(34,45): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
+D:\Programming\Forsaken\GameMenu.h(34,45): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
   (компиляция исходного файла "main.cpp")
   
-D:\Programming\Forsaken - Copy\GameMenu.h(48,17): warning C4244: инициализация: преобразование "unsigned int" в "float", возможна потеря данных
+D:\Programming\Forsaken\GameMenu.h(48,17): warning C4244: инициализация: преобразование "unsigned int" в "float", возможна потеря данных
   (компиляция исходного файла "main.cpp")
   
-D:\Programming\Forsaken - Copy\GameMenu.h(49,18): warning C4244: инициализация: преобразование "unsigned int" в "float", возможна потеря данных
+D:\Programming\Forsaken\GameMenu.h(49,18): warning C4244: инициализация: преобразование "unsigned int" в "float", возможна потеря данных
   (компиляция исходного файла "main.cpp")
   
-D:\Programming\Forsaken - Copy\GameMenu.h(79,93): warning C4244: аргумент: преобразование "T" в "T", возможна потеря данных
-D:\Programming\Forsaken - Copy\GameMenu.h(79,93): warning C4244:         with
-D:\Programming\Forsaken - Copy\GameMenu.h(79,93): warning C4244:         [
-D:\Programming\Forsaken - Copy\GameMenu.h(79,93): warning C4244:             T=int
-D:\Programming\Forsaken - Copy\GameMenu.h(79,93): warning C4244:         ]
-D:\Programming\Forsaken - Copy\GameMenu.h(79,93): warning C4244:         and
-D:\Programming\Forsaken - Copy\GameMenu.h(79,93): warning C4244:         [
-D:\Programming\Forsaken - Copy\GameMenu.h(79,93): warning C4244:             T=float
-D:\Programming\Forsaken - Copy\GameMenu.h(79,93): warning C4244:         ]
+D:\Programming\Forsaken\GameMenu.h(79,93): warning C4244: аргумент: преобразование "T" в "T", возможна потеря данных
+D:\Programming\Forsaken\GameMenu.h(79,93): warning C4244:         with
+D:\Programming\Forsaken\GameMenu.h(79,93): warning C4244:         [
+D:\Programming\Forsaken\GameMenu.h(79,93): warning C4244:             T=int
+D:\Programming\Forsaken\GameMenu.h(79,93): warning C4244:         ]
+D:\Programming\Forsaken\GameMenu.h(79,93): warning C4244:         and
+D:\Programming\Forsaken\GameMenu.h(79,93): warning C4244:         [
+D:\Programming\Forsaken\GameMenu.h(79,93): warning C4244:             T=float
+D:\Programming\Forsaken\GameMenu.h(79,93): warning C4244:         ]
   (компиляция исходного файла "main.cpp")
   
-D:\Programming\Forsaken - Copy\GameMenu.h(79,76): warning C4244: аргумент: преобразование "T" в "T", возможна потеря данных
-D:\Programming\Forsaken - Copy\GameMenu.h(79,76): warning C4244:         with
-D:\Programming\Forsaken - Copy\GameMenu.h(79,76): warning C4244:         [
-D:\Programming\Forsaken - Copy\GameMenu.h(79,76): warning C4244:             T=int
-D:\Programming\Forsaken - Copy\GameMenu.h(79,76): warning C4244:         ]
-D:\Programming\Forsaken - Copy\GameMenu.h(79,76): warning C4244:         and
-D:\Programming\Forsaken - Copy\GameMenu.h(79,76): warning C4244:         [
-D:\Programming\Forsaken - Copy\GameMenu.h(79,76): warning C4244:             T=float
-D:\Programming\Forsaken - Copy\GameMenu.h(79,76): warning C4244:         ]
+D:\Programming\Forsaken\GameMenu.h(79,76): warning C4244: аргумент: преобразование "T" в "T", возможна потеря данных
+D:\Programming\Forsaken\GameMenu.h(79,76): warning C4244:         with
+D:\Programming\Forsaken\GameMenu.h(79,76): warning C4244:         [
+D:\Programming\Forsaken\GameMenu.h(79,76): warning C4244:             T=int
+D:\Programming\Forsaken\GameMenu.h(79,76): warning C4244:         ]
+D:\Programming\Forsaken\GameMenu.h(79,76): warning C4244:         and
+D:\Programming\Forsaken\GameMenu.h(79,76): warning C4244:         [
+D:\Programming\Forsaken\GameMenu.h(79,76): warning C4244:             T=float
+D:\Programming\Forsaken\GameMenu.h(79,76): warning C4244:         ]
   (компиляция исходного файла "main.cpp")
   
-D:\Programming\Forsaken - Copy\GameMenu.h(83,98): warning C4244: аргумент: преобразование "T" в "T", возможна потеря данных
-D:\Programming\Forsaken - Copy\GameMenu.h(83,98): warning C4244:         with
-D:\Programming\Forsaken - Copy\GameMenu.h(83,98): warning C4244:         [
-D:\Programming\Forsaken - Copy\GameMenu.h(83,98): warning C4244:             T=int
-D:\Programming\Forsaken - Copy\GameMenu.h(83,98): warning C4244:         ]
-D:\Programming\Forsaken - Copy\GameMenu.h(83,98): warning C4244:         and
-D:\Programming\Forsaken - Copy\GameMenu.h(83,98): warning C4244:         [
-D:\Programming\Forsaken - Copy\GameMenu.h(83,98): warning C4244:             T=float
-D:\Programming\Forsaken - Copy\GameMenu.h(83,98): warning C4244:         ]
+D:\Programming\Forsaken\GameMenu.h(83,98): warning C4244: аргумент: преобразование "T" в "T", возможна потеря данных
+D:\Programming\Forsaken\GameMenu.h(83,98): warning C4244:         with
+D:\Programming\Forsaken\GameMenu.h(83,98): warning C4244:         [
+D:\Programming\Forsaken\GameMenu.h(83,98): warning C4244:             T=int
+D:\Programming\Forsaken\GameMenu.h(83,98): warning C4244:         ]
+D:\Programming\Forsaken\GameMenu.h(83,98): warning C4244:         and
+D:\Programming\Forsaken\GameMenu.h(83,98): warning C4244:         [
+D:\Programming\Forsaken\GameMenu.h(83,98): warning C4244:             T=float
+D:\Programming\Forsaken\GameMenu.h(83,98): warning C4244:         ]
   (компиляция исходного файла "main.cpp")
   
-D:\Programming\Forsaken - Copy\GameMenu.h(83,81): warning C4244: аргумент: преобразование "T" в "T", возможна потеря данных
-D:\Programming\Forsaken - Copy\GameMenu.h(83,81): warning C4244:         with
-D:\Programming\Forsaken - Copy\GameMenu.h(83,81): warning C4244:         [
-D:\Programming\Forsaken - Copy\GameMenu.h(83,81): warning C4244:             T=int
-D:\Programming\Forsaken - Copy\GameMenu.h(83,81): warning C4244:         ]
-D:\Programming\Forsaken - Copy\GameMenu.h(83,81): warning C4244:         and
-D:\Programming\Forsaken - Copy\GameMenu.h(83,81): warning C4244:         [
-D:\Programming\Forsaken - Copy\GameMenu.h(83,81): warning C4244:             T=float
-D:\Programming\Forsaken - Copy\GameMenu.h(83,81): warning C4244:         ]
+D:\Programming\Forsaken\GameMenu.h(83,81): warning C4244: аргумент: преобразование "T" в "T", возможна потеря данных
+D:\Programming\Forsaken\GameMenu.h(83,81): warning C4244:         with
+D:\Programming\Forsaken\GameMenu.h(83,81): warning C4244:         [
+D:\Programming\Forsaken\GameMenu.h(83,81): warning C4244:             T=int
+D:\Programming\Forsaken\GameMenu.h(83,81): warning C4244:         ]
+D:\Programming\Forsaken\GameMenu.h(83,81): warning C4244:         and
+D:\Programming\Forsaken\GameMenu.h(83,81): warning C4244:         [
+D:\Programming\Forsaken\GameMenu.h(83,81): warning C4244:             T=float
+D:\Programming\Forsaken\GameMenu.h(83,81): warning C4244:         ]
   (компиляция исходного файла "main.cpp")
   
-D:\Programming\Forsaken - Copy\GameMenu.h(103,98): warning C4244: аргумент: преобразование "T" в "T", возможна потеря данных
-D:\Programming\Forsaken - Copy\GameMenu.h(103,98): warning C4244:         with
-D:\Programming\Forsaken - Copy\GameMenu.h(103,98): warning C4244:         [
-D:\Programming\Forsaken - Copy\GameMenu.h(103,98): warning C4244:             T=int
-D:\Programming\Forsaken - Copy\GameMenu.h(103,98): warning C4244:         ]
-D:\Programming\Forsaken - Copy\GameMenu.h(103,98): warning C4244:         and
-D:\Programming\Forsaken - Copy\GameMenu.h(103,98): warning C4244:         [
-D:\Programming\Forsaken - Copy\GameMenu.h(103,98): warning C4244:             T=float
-D:\Programming\Forsaken - Copy\GameMenu.h(103,98): warning C4244:         ]
+D:\Programming\Forsaken\GameMenu.h(103,98): warning C4244: аргумент: преобразование "T" в "T", возможна потеря данных
+D:\Programming\Forsaken\GameMenu.h(103,98): warning C4244:         with
+D:\Programming\Forsaken\GameMenu.h(103,98): warning C4244:         [
+D:\Programming\Forsaken\GameMenu.h(103,98): warning C4244:             T=int
+D:\Programming\Forsaken\GameMenu.h(103,98): warning C4244:         ]
+D:\Programming\Forsaken\GameMenu.h(103,98): warning C4244:         and
+D:\Programming\Forsaken\GameMenu.h(103,98): warning C4244:         [
+D:\Programming\Forsaken\GameMenu.h(103,98): warning C4244:             T=float
+D:\Programming\Forsaken\GameMenu.h(103,98): warning C4244:         ]
   (компиляция исходного файла "main.cpp")
   
-D:\Programming\Forsaken - Copy\GameMenu.h(103,81): warning C4244: аргумент: преобразование "T" в "T", возможна потеря данных
-D:\Programming\Forsaken - Copy\GameMenu.h(103,81): warning C4244:         with
-D:\Programming\Forsaken - Copy\GameMenu.h(103,81): warning C4244:         [
-D:\Programming\Forsaken - Copy\GameMenu.h(103,81): warning C4244:             T=int
-D:\Programming\Forsaken - Copy\GameMenu.h(103,81): warning C4244:         ]
-D:\Programming\Forsaken - Copy\GameMenu.h(103,81): warning C4244:         and
-D:\Programming\Forsaken - Copy\GameMenu.h(103,81): warning C4244:         [
-D:\Programming\Forsaken - Copy\GameMenu.h(103,81): warning C4244:             T=float
-D:\Programming\Forsaken - Copy\GameMenu.h(103,81): warning C4244:         ]
+D:\Programming\Forsaken\GameMenu.h(103,81): warning C4244: аргумент: преобразование "T" в "T", возможна потеря данных
+D:\Programming\Forsaken\GameMenu.h(103,81): warning C4244:         with
+D:\Programming\Forsaken\GameMenu.h(103,81): warning C4244:         [
+D:\Programming\Forsaken\GameMenu.h(103,81): warning C4244:             T=int
+D:\Programming\Forsaken\GameMenu.h(103,81): warning C4244:         ]
+D:\Programming\Forsaken\GameMenu.h(103,81): warning C4244:         and
+D:\Programming\Forsaken\GameMenu.h(103,81): warning C4244:         [
+D:\Programming\Forsaken\GameMenu.h(103,81): warning C4244:             T=float
+D:\Programming\Forsaken\GameMenu.h(103,81): warning C4244:         ]
   (компиляция исходного файла "main.cpp")
   
-D:\Programming\Forsaken - Copy\GameMenu.h(108,95): warning C4244: аргумент: преобразование "T" в "T", возможна потеря данных
-D:\Programming\Forsaken - Copy\GameMenu.h(108,95): warning C4244:         with
-D:\Programming\Forsaken - Copy\GameMenu.h(108,95): warning C4244:         [
-D:\Programming\Forsaken - Copy\GameMenu.h(108,95): warning C4244:             T=int
-D:\Programming\Forsaken - Copy\GameMenu.h(108,95): warning C4244:         ]
-D:\Programming\Forsaken - Copy\GameMenu.h(108,95): warning C4244:         and
-D:\Programming\Forsaken - Copy\GameMenu.h(108,95): warning C4244:         [
-D:\Programming\Forsaken - Copy\GameMenu.h(108,95): warning C4244:             T=float
-D:\Programming\Forsaken - Copy\GameMenu.h(108,95): warning C4244:         ]
+D:\Programming\Forsaken\GameMenu.h(108,95): warning C4244: аргумент: преобразование "T" в "T", возможна потеря данных
+D:\Programming\Forsaken\GameMenu.h(108,95): warning C4244:         with
+D:\Programming\Forsaken\GameMenu.h(108,95): warning C4244:         [
+D:\Programming\Forsaken\GameMenu.h(108,95): warning C4244:             T=int
+D:\Programming\Forsaken\GameMenu.h(108,95): warning C4244:         ]
+D:\Programming\Forsaken\GameMenu.h(108,95): warning C4244:         and
+D:\Programming\Forsaken\GameMenu.h(108,95): warning C4244:         [
+D:\Programming\Forsaken\GameMenu.h(108,95): warning C4244:             T=float
+D:\Programming\Forsaken\GameMenu.h(108,95): warning C4244:         ]
   (компиляция исходного файла "main.cpp")
   
-D:\Programming\Forsaken - Copy\GameMenu.h(108,78): warning C4244: аргумент: преобразование "T" в "T", возможна потеря данных
-D:\Programming\Forsaken - Copy\GameMenu.h(108,78): warning C4244:         with
-D:\Programming\Forsaken - Copy\GameMenu.h(108,78): warning C4244:         [
-D:\Programming\Forsaken - Copy\GameMenu.h(108,78): warning C4244:             T=int
-D:\Programming\Forsaken - Copy\GameMenu.h(108,78): warning C4244:         ]
-D:\Programming\Forsaken - Copy\GameMenu.h(108,78): warning C4244:         and
-D:\Programming\Forsaken - Copy\GameMenu.h(108,78): warning C4244:         [
-D:\Programming\Forsaken - Copy\GameMenu.h(108,78): warning C4244:             T=float
-D:\Programming\Forsaken - Copy\GameMenu.h(108,78): warning C4244:         ]
+D:\Programming\Forsaken\GameMenu.h(108,78): warning C4244: аргумент: преобразование "T" в "T", возможна потеря данных
+D:\Programming\Forsaken\GameMenu.h(108,78): warning C4244:         with
+D:\Programming\Forsaken\GameMenu.h(108,78): warning C4244:         [
+D:\Programming\Forsaken\GameMenu.h(108,78): warning C4244:             T=int
+D:\Programming\Forsaken\GameMenu.h(108,78): warning C4244:         ]
+D:\Programming\Forsaken\GameMenu.h(108,78): warning C4244:         and
+D:\Programming\Forsaken\GameMenu.h(108,78): warning C4244:         [
+D:\Programming\Forsaken\GameMenu.h(108,78): warning C4244:             T=float
+D:\Programming\Forsaken\GameMenu.h(108,78): warning C4244:         ]
   (компиляция исходного файла "main.cpp")
   
-D:\Programming\Forsaken - Copy\GameMenu.h(126,89): warning C4244: аргумент: преобразование "T" в "T", возможна потеря данных
-D:\Programming\Forsaken - Copy\GameMenu.h(126,89): warning C4244:         with
-D:\Programming\Forsaken - Copy\GameMenu.h(126,89): warning C4244:         [
-D:\Programming\Forsaken - Copy\GameMenu.h(126,89): warning C4244:             T=int
-D:\Programming\Forsaken - Copy\GameMenu.h(126,89): warning C4244:         ]
-D:\Programming\Forsaken - Copy\GameMenu.h(126,89): warning C4244:         and
-D:\Programming\Forsaken - Copy\GameMenu.h(126,89): warning C4244:         [
-D:\Programming\Forsaken - Copy\GameMenu.h(126,89): warning C4244:             T=float
-D:\Programming\Forsaken - Copy\GameMenu.h(126,89): warning C4244:         ]
+D:\Programming\Forsaken\GameMenu.h(126,89): warning C4244: аргумент: преобразование "T" в "T", возможна потеря данных
+D:\Programming\Forsaken\GameMenu.h(126,89): warning C4244:         with
+D:\Programming\Forsaken\GameMenu.h(126,89): warning C4244:         [
+D:\Programming\Forsaken\GameMenu.h(126,89): warning C4244:             T=int
+D:\Programming\Forsaken\GameMenu.h(126,89): warning C4244:         ]
+D:\Programming\Forsaken\GameMenu.h(126,89): warning C4244:         and
+D:\Programming\Forsaken\GameMenu.h(126,89): warning C4244:         [
+D:\Programming\Forsaken\GameMenu.h(126,89): warning C4244:             T=float
+D:\Programming\Forsaken\GameMenu.h(126,89): warning C4244:         ]
   (компиляция исходного файла "main.cpp")
   
-D:\Programming\Forsaken - Copy\GameMenu.h(126,72): warning C4244: аргумент: преобразование "T" в "T", возможна потеря данных
-D:\Programming\Forsaken - Copy\GameMenu.h(126,72): warning C4244:         with
-D:\Programming\Forsaken - Copy\GameMenu.h(126,72): warning C4244:         [
-D:\Programming\Forsaken - Copy\GameMenu.h(126,72): warning C4244:             T=int
-D:\Programming\Forsaken - Copy\GameMenu.h(126,72): warning C4244:         ]
-D:\Programming\Forsaken - Copy\GameMenu.h(126,72): warning C4244:         and
-D:\Programming\Forsaken - Copy\GameMenu.h(126,72): warning C4244:         [
-D:\Programming\Forsaken - Copy\GameMenu.h(126,72): warning C4244:             T=float
-D:\Programming\Forsaken - Copy\GameMenu.h(126,72): warning C4244:         ]
+D:\Programming\Forsaken\GameMenu.h(126,72): warning C4244: аргумент: преобразование "T" в "T", возможна потеря данных
+D:\Programming\Forsaken\GameMenu.h(126,72): warning C4244:         with
+D:\Programming\Forsaken\GameMenu.h(126,72): warning C4244:         [
+D:\Programming\Forsaken\GameMenu.h(126,72): warning C4244:             T=int
+D:\Programming\Forsaken\GameMenu.h(126,72): warning C4244:         ]
+D:\Programming\Forsaken\GameMenu.h(126,72): warning C4244:         and
+D:\Programming\Forsaken\GameMenu.h(126,72): warning C4244:         [
+D:\Programming\Forsaken\GameMenu.h(126,72): warning C4244:             T=float
+D:\Programming\Forsaken\GameMenu.h(126,72): warning C4244:         ]
   (компиляция исходного файла "main.cpp")
   
-D:\Programming\Forsaken - Copy\GameMenu.h(153,31): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
+D:\Programming\Forsaken\GameMenu.h(153,31): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
   (компиляция исходного файла "main.cpp")
   
-D:\Programming\Forsaken - Copy\map.h(87,53): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
+D:\Programming\Forsaken\map.h(87,53): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
   (компиляция исходного файла "main.cpp")
   
-D:\Programming\Forsaken - Copy\map.h(87,45): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
+D:\Programming\Forsaken\map.h(87,45): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
   (компиляция исходного файла "main.cpp")
   
-D:\Programming\Forsaken - Copy\main.cpp(92,48): warning C4244: аргумент: преобразование "float" в "T", возможна потеря данных
-D:\Programming\Forsaken - Copy\main.cpp(92,48): warning C4244:         with
-D:\Programming\Forsaken - Copy\main.cpp(92,48): warning C4244:         [
-D:\Programming\Forsaken - Copy\main.cpp(92,48): warning C4244:             T=int
-D:\Programming\Forsaken - Copy\main.cpp(92,48): warning C4244:         ]
-D:\Programming\Forsaken - Copy\main.cpp(92,45): warning C4244: аргумент: преобразование "float" в "T", возможна потеря данных
-D:\Programming\Forsaken - Copy\main.cpp(92,45): warning C4244:         with
-D:\Programming\Forsaken - Copy\main.cpp(92,45): warning C4244:         [
-D:\Programming\Forsaken - Copy\main.cpp(92,45): warning C4244:             T=int
-D:\Programming\Forsaken - Copy\main.cpp(92,45): warning C4244:         ]
-D:\Programming\Forsaken - Copy\main.cpp(112,20): warning C4244: инициализация: преобразование "float" в "int", возможна потеря данных
-D:\Programming\Forsaken - Copy\main.cpp(113,24): warning C4244: инициализация: преобразование "float" в "int", возможна потеря данных
-D:\Programming\Forsaken - Copy\main.cpp(116,50): warning C4244: =: преобразование "int" в "float", возможна потеря данных
-D:\Programming\Forsaken - Copy\main.cpp(118,49): warning C4244: =: преобразование "int" в "float", возможна потеря данных
-D:\Programming\Forsaken - Copy\main.cpp(139,32): warning C4244: инициализация: преобразование "double" в "float", возможна потеря данных
-D:\Programming\Forsaken - Copy\main.cpp(284,25): warning C4244: инициализация: преобразование "float" в "int", возможна потеря данных
-D:\Programming\Forsaken - Copy\main.cpp(285,26): warning C4244: инициализация: преобразование "float" в "int", возможна потеря данных
-D:\Programming\Forsaken - Copy\main.cpp(286,22): warning C4244: инициализация: преобразование "float" в "int", возможна потеря данных
-D:\Programming\Forsaken - Copy\main.cpp(287,23): warning C4244: инициализация: преобразование "float" в "int", возможна потеря данных
-D:\Programming\Forsaken - Copy\main.cpp(289,29): warning C4244: инициализация: преобразование "float" в "int", возможна потеря данных
-D:\Programming\Forsaken - Copy\main.cpp(290,26): warning C4244: инициализация: преобразование "float" в "int", возможна потеря данных
-D:\Programming\Forsaken - Copy\main.cpp(291,28): warning C4244: инициализация: преобразование "float" в "int", возможна потеря данных
-D:\Programming\Forsaken - Copy\main.cpp(292,27): warning C4244: инициализация: преобразование "float" в "int", возможна потеря данных
-D:\Programming\Forsaken - Copy\main.cpp(497,20): warning C4244: инициализация: преобразование "float" в "int", возможна потеря данных
-D:\Programming\Forsaken - Copy\main.cpp(498,20): warning C4244: инициализация: преобразование "float" в "int", возможна потеря данных
+D:\Programming\Forsaken\main.cpp(99,48): warning C4244: аргумент: преобразование "float" в "T", возможна потеря данных
+D:\Programming\Forsaken\main.cpp(99,48): warning C4244:         with
+D:\Programming\Forsaken\main.cpp(99,48): warning C4244:         [
+D:\Programming\Forsaken\main.cpp(99,48): warning C4244:             T=int
+D:\Programming\Forsaken\main.cpp(99,48): warning C4244:         ]
+D:\Programming\Forsaken\main.cpp(99,45): warning C4244: аргумент: преобразование "float" в "T", возможна потеря данных
+D:\Programming\Forsaken\main.cpp(99,45): warning C4244:         with
+D:\Programming\Forsaken\main.cpp(99,45): warning C4244:         [
+D:\Programming\Forsaken\main.cpp(99,45): warning C4244:             T=int
+D:\Programming\Forsaken\main.cpp(99,45): warning C4244:         ]
+D:\Programming\Forsaken\main.cpp(119,20): warning C4244: инициализация: преобразование "float" в "int", возможна потеря данных
+D:\Programming\Forsaken\main.cpp(120,24): warning C4244: инициализация: преобразование "float" в "int", возможна потеря данных
+D:\Programming\Forsaken\main.cpp(123,50): warning C4244: =: преобразование "int" в "float", возможна потеря данных
+D:\Programming\Forsaken\main.cpp(125,49): warning C4244: =: преобразование "int" в "float", возможна потеря данных
+D:\Programming\Forsaken\main.cpp(146,32): warning C4244: инициализация: преобразование "double" в "float", возможна потеря данных
+D:\Programming\Forsaken\main.cpp(290,25): warning C4244: инициализация: преобразование "float" в "int", возможна потеря данных
+D:\Programming\Forsaken\main.cpp(291,26): warning C4244: инициализация: преобразование "float" в "int", возможна потеря данных
+D:\Programming\Forsaken\main.cpp(292,22): warning C4244: инициализация: преобразование "float" в "int", возможна потеря данных
+D:\Programming\Forsaken\main.cpp(293,23): warning C4244: инициализация: преобразование "float" в "int", возможна потеря данных
+D:\Programming\Forsaken\main.cpp(295,29): warning C4244: инициализация: преобразование "float" в "int", возможна потеря данных
+D:\Programming\Forsaken\main.cpp(296,26): warning C4244: инициализация: преобразование "float" в "int", возможна потеря данных
+D:\Programming\Forsaken\main.cpp(297,28): warning C4244: инициализация: преобразование "float" в "int", возможна потеря данных
+D:\Programming\Forsaken\main.cpp(298,27): warning C4244: инициализация: преобразование "float" в "int", возможна потеря данных
+D:\Programming\Forsaken\main.cpp(497,20): warning C4244: инициализация: преобразование "float" в "int", возможна потеря данных
+D:\Programming\Forsaken\main.cpp(498,20): warning C4244: инициализация: преобразование "float" в "int", возможна потеря данных
 C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.43.34808\include\xutility(506,82): warning C4244: аргумент: преобразование "_Ty" в "float", возможна потеря данных
 C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.43.34808\include\xutility(506,82): warning C4244:         with
 C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.43.34808\include\xutility(506,82): warning C4244:         [
@@ -160,19 +160,19 @@ C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.43.3480
   (компиляция исходного файла "main.cpp")
       C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.43.34808\include\xutility(506,82):
       контекст создания экземпляра шаблона (сначала самый старый)
-          D:\Programming\Forsaken - Copy\main.cpp(533,19):
-          выполняется компиляция ссылки на экземпляр шаблон функции "std::shared_ptr<Keeper> std::make_shared<Keeper,const char(&)[11],int,int,int,int,const char(&)[7],const char(&)[18],sf::RenderWindow&,const char(&)[11]>(const char (&)[11],int &&,int &&,int &&,int &&,const char (&)[7],const char (&)[18],sf::RenderWindow &,const char (&)[11])"
+          D:\Programming\Forsaken\main.cpp(534,31):
+          выполняется компиляция ссылки на экземпляр шаблон функции "std::shared_ptr<Animals> std::make_shared<Animals,const char(&)[13],int,int,int,int,const char(&)[9],const char(&)[22],const char(&)[13],float>(const char (&)[13],int &&,int &&,int &&,int &&,const char (&)[9],const char (&)[22],const char (&)[13],float &&)"
           C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.43.34808\include\memory(2903,46):
-          выполняется компиляция ссылки на экземпляр шаблон функции "std::_Ref_count_obj2<Keeper>::_Ref_count_obj2<const char(&)[11],_Ty,_Ty,_Ty,_Ty,const char(&)[7],const char(&)[18],sf::RenderWindow&,const char(&)[11]>(const char (&)[11],_Ty &&,_Ty &&,_Ty &&,_Ty &&,const char (&)[7],const char (&)[18],sf::RenderWindow &,const char (&)[11])"
+          выполняется компиляция ссылки на экземпляр шаблон функции "std::_Ref_count_obj2<Animals>::_Ref_count_obj2<const char(&)[13],_Ty,_Ty,_Ty,_Ty,const char(&)[9],const char(&)[22],const char(&)[13],float>(const char (&)[13],_Ty &&,_Ty &&,_Ty &&,_Ty &&,const char (&)[9],const char (&)[22],const char (&)[13],float &&)"
           with
           [
               _Ty=int
           ]
           C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.43.34808\include\memory(2092,18):
-          выполняется компиляция ссылки на экземпляр шаблон функции "void std::_Construct_in_place<_Ty,const char(&)[11],int,int,int,int,const char(&)[7],const char(&)[18],sf::RenderWindow&,const char(&)[11]>(_Ty &,const char (&)[11],int &&,int &&,int &&,int &&,const char (&)[7],const char (&)[18],sf::RenderWindow &,const char (&)[11]) noexcept(false)"
+          выполняется компиляция ссылки на экземпляр шаблон функции "void std::_Construct_in_place<_Ty,const char(&)[13],int,int,int,int,const char(&)[9],const char(&)[22],const char(&)[13],float>(_Ty &,const char (&)[13],int &&,int &&,int &&,int &&,const char (&)[9],const char (&)[22],const char (&)[13],float &&) noexcept(false)"
           with
           [
-              _Ty=Keeper
+              _Ty=Animals
           ]
   
-  Forsaken.vcxproj -> D:\Programming\Forsaken - Copy\x64\Debug\Forsaken.exe
+  Forsaken.vcxproj -> D:\Programming\Forsaken\x64\Debug\Forsaken.exe
